@@ -1,0 +1,42 @@
+<script src="soundmanager2.js"></script>
+<script>
+
+soundManager = new SoundManager();
+soundManager.setup({
+	url:"./swf/",
+	flashVersion:9,
+	useFlashBlock:false,
+	debugMode:false,
+	debugFlash:false,
+	consoleOnly:true,
+	onready:function() {
+		console.log('SM READY');
+	},
+	ontimeout: function(){
+		console.log("TIMEOUT");
+	},
+	waitForWindowLoad: true,
+	multiShot: false
+});
+
+
+soundManager.onready(function() {
+	soundManager.defaultOptions.onfinish=function(){
+		console.log("Song finished");
+		createSound();
+	}
+  var createSound=function(){
+  	sound = soundManager.createSound({
+	  id: 'mySound',
+	  //The additional m is to make it a string with a non numeric character as required by SM2
+	  url:"./sample.mp3"
+	});
+	sound.onposition(5000,function(){
+		console.log("Onposition fired");
+	});
+
+	sound.play();
+  }
+  createSound();
+});
+</script>
