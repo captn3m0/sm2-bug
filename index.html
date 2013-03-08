@@ -23,9 +23,10 @@ soundManager.setup({
 soundManager.onready(function() {
 	soundManager.defaultOptions.onfinish=function(){
 		console.log("Song finished");
+		soundManager.unload('mySound');
 		createSound();
 	}
-  var createSound=function(){
+  createSound=function(){
   	sound = soundManager.createSound({
 	  id: 'mySound',
 	  //The additional m is to make it a string with a non numeric character as required by SM2
